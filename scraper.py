@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import datetime
 
 df = pd.read_csv("skigebiete_linkliste.csv")
 linkliste = df['0'].tolist()
@@ -20,16 +21,15 @@ for gebiet_link in linkliste:
             offenelifte = (skigebiet.find_all('td')[-1].text).split(" von ") # Auslesen im Format "12 von 24" (offene Lifte sind immer das letzte TD, deshalb -1)
             total = offenelifte[1].strip()
             offen = offenelifte[0].strip()
-            skigebiete_final.append({"titel": titel, "totallifte": total, "offen": offen}) # In die finale Liste laden
+            now = datetime.datetime.now()
+            scraperwiki.sqlite.save(unique_keys=['name'], data={"zeit": now.strftime("%Y-%m-%d_%H-%M", "titel": titel, "totallifte": total, "offen": offen})
+            #skigebiete_final.append({"titel": titel, "totallifte": total, "offen": offen}) # In die finale Liste laden
         except:
             print("Fehler mit Skigebiet: "+"https://www.bergfex.ch"+gebiet_link)
 
-df_skigebiete = pd.DataFrame(skigebiete_final)
-import datetime
 
-now = datetime.datetime.now()
-#print (now.strftime("%Y-%m-%d %H:%M"))
-df_skigebiete.to_csv('skigebiete_oeffnungszeiten/'+now.strftime("%Y-%m-%d_%H-%M_skigebiete_oeffnungszeiten.csv"))
+# Write out to the sqlite database using scraperwiki library
+#df_skigebiete.to_csv('skigebiete_oeffnungszeiten/'+now.strftime("%Y-%m-%d_%H-%M_skigebiete_oeffnungszeiten.csv"))
 
 # import scraperwiki
 #import lxml.html
@@ -50,8 +50,6 @@ df_skigebiete.to_csv('skigebiete_oeffnungszeiten/'+now.strftime("%Y-%m-%d_%H-%M_
 # root = lxml.html.fromstring(html)
 # root.cssselect("div[align='left']")
 #
-# # Write out to the sqlite database using scraperwiki library
-# scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
 #
 # # An arbitrary query against the database
 # scraperwiki.sql.select("* from data where 'name'='peter'")

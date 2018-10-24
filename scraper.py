@@ -22,7 +22,7 @@ for gebiet_link in linkliste:
             total = offenelifte[1].strip()
             offen = offenelifte[0].strip()
             now = datetime.datetime.now()
-            scraperwiki.sqlite.save(unique_keys=['name'], data={"zeit": now.strftime("%Y-%m-%d_%H-%M", "titel": titel, "totallifte": total, "offen": offen})
+            scraperwiki.sqlite.save(unique_keys=['name'], data={"zeit": now.strftime("%Y-%m-%d_%H-%M"), "titel": titel, "totallifte": total, "offen": offen})
             #skigebiete_final.append({"titel": titel, "totallifte": total, "offen": offen}) # In die finale Liste laden
         except:
             print("Fehler mit Skigebiet: "+"https://www.bergfex.ch"+gebiet_link)

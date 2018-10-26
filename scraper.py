@@ -8,7 +8,7 @@ linkliste = []
 reader = csv.reader(open("skigebiete_linkliste.csv"))
 for row in reader:
     linkliste.append(row[0])
-    
+
 skigebiete_final = []
 for gebiet_link in linkliste:
     print(gebiet_link)
@@ -25,4 +25,3 @@ for gebiet_link in linkliste:
         offen = offenelifte[0].strip()
         now = datetime.datetime.now()
         scraperwiki.sqlite.save(unique_keys=['name'], data={"zeit": now.strftime("%Y-%m-%d_%H-%M"), "titel": titel, "totallifte": total, "offen": offen})
-

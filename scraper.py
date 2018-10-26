@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-import csv
 import datetime
 import scraperwiki
+import csv
 
 linkliste = []
 reader = csv.reader(open("skigebiete_linkliste.csv"))

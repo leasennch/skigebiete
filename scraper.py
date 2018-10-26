@@ -24,4 +24,5 @@ for gebiet_link in linkliste:
         total = offenelifte[1].strip()
         offen = offenelifte[0].strip()
         now = datetime.datetime.now()
-        scraperwiki.sqlite.save(unique_keys=['name'], data={"zeit": now.strftime("%Y-%m-%d_%H-%M"), "titel": titel, "totallifte": total, "offen": offen})
+        zeitstempel = now.strftime("%Y-%m-%d_%H-%M")
+        scraperwiki.sqlite.save(unique_keys=[zeitstempel], data={"zeit": zeitstempel, "titel": titel, "totallifte": total, "offen": offen})

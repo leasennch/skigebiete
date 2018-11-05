@@ -17,9 +17,9 @@ import datetime
 
 # In[4]:
 
-
+path = "/Users/leasenn/Google Drive/CAS Datenjournalismus/skigebiete/"
 linkliste = []
-df_skigebiete = pd.read_csv("/Users/leasenn/Google Drive/CAS Datenjournalismus/skigebiete/skigebiete_linkliste.csv")
+df_skigebiete = pd.read_csv(path+"skigebiete_linkliste.csv")
 linkliste = df_skigebiete["skigebiete"].values.tolist()
 
 skigebiete_final = []
@@ -61,8 +61,8 @@ for gebiet_link in linkliste:
 # In[5]:
 
 
-pd.DataFrame(skigebiete_final).to_csv('/Users/leasenn/Google Drive/CAS Datenjournalismus/skigebiete/skigebiete_oeffnungszeiten/oeffnungszeiten_'+zeitstempel+".csv")
-pd.DataFrame(errors).to_csv('/Users/leasenn/Google Drive/CAS Datenjournalismus/skigebiete/skigebiete_oeffnungszeiten/errors_'+zeitstempel+".csv")
+pd.DataFrame(skigebiete_final).to_csv(path+'skigebiete_oeffnungszeiten/oeffnungszeiten_'+zeitstempel+".csv")
+pd.DataFrame(errors).to_csv(path+'skigebiete_oeffnungszeiten/errors_'+zeitstempel+".csv")
 
 
 # In[ ]:
